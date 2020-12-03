@@ -73,6 +73,7 @@ class dqn_agents():
 
                     if (total_step % self.target_update_interval) == 0:
                         self.update_target(self.model, self.target_model)
+                        print("target updated!!!")
 
             print("episode: {} / step: {} / reward: {:.2f} / loss: {:.4f} / epsilon: {:.3f}".format
                   (ep, step_count, episode_rewards, loss, epsilon))
