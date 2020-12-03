@@ -46,7 +46,7 @@ class a2c_agent():
             done = False
 
             while not done:
-                action = np.asscalar(torch.argmax(self.actor.get_action(state)[0]).detach().cpu().clone().numpy())
+                action = self.actor.get_action(state)
 
                 env_info = self.env.step(action)[self.default_brain]
                 next_state = Utils.get_state_by_visual(env_info.visual_observations[0])
@@ -83,7 +83,7 @@ class a2c_agent():
                 batch_state, batch_action, batch_td_target, batch_advantage = [], [], [], []
 
                 critic_loss = self.critic.Learn(states, td_targets)
-                actor_loss = self.actor.Learn(states, actions, advantages)
+                actor_loss = self.actor.Learn(torch.FloatTensor(states), actions, advantages)
 
                 state = next_state
                 episode_reward += reward[0]

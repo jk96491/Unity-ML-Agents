@@ -35,6 +35,7 @@ class visual_obs_critic(nn.Module):
     def predict(self, obs):
         obs = torch.FloatTensor(obs).to(self.device)
         q_val = self.forward(obs)
+
         return q_val
 
     def Learn(self, states, td_target):

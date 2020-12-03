@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from Modules.CNN_Layer import CNN
 import Utils
+import numpy as np
 
 
 class visual_obs_actor(nn.Module):
@@ -32,15 +33,17 @@ class visual_obs_actor(nn.Module):
         return action
 
     def get_action(self, obs):
-        obs = torch.FloatTensor(obs).to(self.device)
+        obs = torch.FloatTensor(obs)
+        obs = obs.to(self.device)
         action = self.forward(obs)
+        action = np.asscalar(torch.argmax(action[0]).detach().cpu().clone().numpy())
         return action
 
     def Learn(self, obs, actions, advantages):
         actions = torch.LongTensor(actions).to(self.device)
         advantages = torch.gather(advantages.squeeze(1).to(self.device), dim=1, index=actions)
 
-        policy = self.get_action(obs)
+        policy = self.forward(obs)
         log_policy = torch.log(policy)
 
         loss = torch.mean(- log_policy * advantages.detach())
