@@ -2,7 +2,8 @@ from mlagents.envs.environment import UnityEnvironment
 import Utils
 from agents import get_agents
 
-game = "AirCombat/Aircombat"
+#game = "AirCombat/Aircombat"
+game = "AirHockey/AirHockey"
 env_name = 'Games/{}'.format(game)
 
 if __name__ == '__main__':
