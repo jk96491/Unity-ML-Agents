@@ -6,9 +6,10 @@ import Utils
 
 
 class visual_obs_critic(nn.Module):
-    def __init__(self, action_space, learning_rate):
+    def __init__(self, action_space, learning_rate, device):
         super(visual_obs_critic, self).__init__()
         self.learning_rate = learning_rate
+        self.device = device
 
         self.cnnLayer = CNN()
 
@@ -20,6 +21,7 @@ class visual_obs_critic(nn.Module):
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
+        obs.cuda(self.device)
         x = self.cnnLayer(obs)
 
         x = x.view(x.size(0), -1)
@@ -31,7 +33,7 @@ class visual_obs_critic(nn.Module):
         return q_val
 
     def predict(self, obs):
-        obs = torch.FloatTensor(obs)
+        obs = torch.FloatTensor(obs).cuda(self.device)
         q_val = self.forward(obs)
         return q_val
 

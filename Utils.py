@@ -35,20 +35,20 @@ def unpack_batch(batch):
     return unpack
 
 
-def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE):
+def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        actor = visual_obs_actor(action_dim, ACTOR_LEARNING_RATE)
+        actor = visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        actor = vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE)
+        actor = vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return actor
 
 
-def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE):
+def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        critic = visual_obs_critic(action_dim, ACTOR_LEARNING_RATE)
+        critic = visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        critic = vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE)
+        critic = vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return critic
 

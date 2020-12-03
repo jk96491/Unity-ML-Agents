@@ -1,5 +1,8 @@
 import numpy as np
 import Utils
+import torch
+import torch.nn as nn
+import copy
 
 
 class a2c_agent():
@@ -12,6 +15,8 @@ class a2c_agent():
         self.max_episode_num = 50000
         self.train_mode = True
 
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
 
@@ -20,8 +25,8 @@ class a2c_agent():
 
         self.env = env
 
-        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE)
+        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).cuda(self.device)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).cuda(self.device)
 
         self.save_epi_reward = []
 
@@ -40,7 +45,7 @@ class a2c_agent():
             done = False
 
             while not done:
-                action = np.argmax(self.actor.get_action(state)[0].detach().numpy())
+                action = np.asscalar(torch.argmax(self.actor.get_action(state)[0]).detach().cpu().clone().numpy())
 
                 env_info = self.env.step(action)[self.default_brain]
                 next_state = Utils.get_state_by_visual(env_info.visual_observations[0])

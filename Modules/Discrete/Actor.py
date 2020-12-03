@@ -6,10 +6,11 @@ import Utils
 
 
 class visual_obs_actor(nn.Module):
-    def __init__(self, action_space, learning_rate):
+    def __init__(self, action_space, learning_rate, device):
         super(visual_obs_actor, self).__init__()
         self.learning_rate = learning_rate
         self.action_space = action_space
+        self.device = device
 
         self.cnnLayer = CNN()
 
@@ -22,6 +23,7 @@ class visual_obs_actor(nn.Module):
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
+        obs = obs.cuda(self.device)
         x = self.cnnLayer(obs)
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
@@ -30,7 +32,7 @@ class visual_obs_actor(nn.Module):
         return action
 
     def get_action(self, obs):
-        obs = torch.FloatTensor(obs)
+        obs = torch.FloatTensor(obs).cuda(self.device)
         action = self.forward(obs)
         return action
 

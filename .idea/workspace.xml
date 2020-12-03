@@ -17,10 +17,10 @@
   <component name="ProjectId" id="1l80oMXikOlfVExJAiPNyqxtyPm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -81,6 +81,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -103,22 +104,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606979338250" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1606979949253">
+    <state width="1899" height="348" key="GridCell.Tab.0.bottom" timestamp="1606982924295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606979949253" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1606979949252">
+    <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.0.center" timestamp="1606982924295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606979949252" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1606979949252">
+    <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.0.left" timestamp="1606982924295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606979949252" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1606979949252">
+    <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.0.right" timestamp="1606982924295">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606979949252" />
+    <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1606982924295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1606982924295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1606982924295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
+    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1606982924295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606982924295" />
     <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1606971222113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -135,5 +156,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="653" y="251" width="613" height="538" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606978853127" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Learners/A2C_Learner.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
