@@ -38,7 +38,6 @@ class visual_obs_critic(nn.Module):
         return q_val
 
     def Learn(self, states, td_target):
-        td_target = torch.FloatTensor(td_target).to(self.device)
         predict = self.predict(states)
         loss = torch.mean((predict - td_target) ** 2)
 

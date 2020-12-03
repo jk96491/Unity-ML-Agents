@@ -37,14 +37,13 @@ class visual_obs_actor(nn.Module):
         return action
 
     def Learn(self, obs, actions, advantages):
-        advantages = torch.FloatTensor(advantages).to(self.device)
         actions = torch.LongTensor(actions).to(self.device)
-        advantages = torch.gather(advantages, dim=1, index=actions)
+        advantages = torch.gather(advantages.squeeze(1), dim=1, index=actions)
 
         policy = self.get_action(obs)
         log_policy = torch.log(policy)
 
-        loss = torch.mean(- log_policy * advantages)
+        loss = torch.mean(- log_policy * advantages.detach())
 
         self.optimizer.zero_grad()
         loss.backward()

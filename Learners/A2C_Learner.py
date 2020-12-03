@@ -57,10 +57,10 @@ class a2c_agent():
                 action = np.reshape(action, [1, 1])
                 reward = np.reshape(reward, [1, 1])
 
-                v_value = self.critic.predict(state)[0].detach().cpu().numpy()
-                next_v_value = self.critic.predict(next_state)[0].detach().cpu().numpy()
+                v_value = self.critic.predict(state)[0]
+                next_v_value = self.critic.predict(next_state)[0]
 
-                train_reward = (reward + 8) / 8
+                train_reward = torch.FloatTensor((reward + 8) / 8).to(self.device)
                 advantage, y_i = Utils.advantage_td_target(train_reward, v_value, next_v_value, done, self.GAMMA)
 
                 batch_state.append(state)
@@ -76,8 +76,10 @@ class a2c_agent():
 
                 states = Utils.unpack_batch(batch_state)
                 actions = Utils.unpack_batch(batch_action)
-                td_targets = Utils.unpack_batch(batch_td_target)
-                advantages = Utils.unpack_batch(batch_advantage)
+                td_targets = torch.stack(batch_td_target, dim=0)
+                advantages = torch.stack(batch_advantage, dim=0)
+                #td_targets = Utils.unpack_batch(batch_td_target)
+                #advantages = Utils.unpack_batch(batch_advantage)
 
                 batch_state, batch_action, batch_td_target, batch_advantage = [], [], [], []
 
