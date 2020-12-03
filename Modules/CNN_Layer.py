@@ -9,7 +9,6 @@ class CNN(nn.Module):
         self.conv2 = nn.Conv2d(32, 64, kernel_size=4, stride=2, bias=False)
         self.conv3 = nn.Conv2d(64, 64, kernel_size=3, stride=1, bias=False)
 
-
     def forward(self, data):
         x = self.conv1(data)
         x = self.conv2(x)

@@ -1,0 +1,14 @@
+GAMMA: 0.95
+BATCH_SIZE: 32
+LEARNING_RATE: 0.001
+max_episode: 50000
+train_mode: True
+buffer_size: 5000
+
+start_train_episode: 10
+target_update_interval: 20
+
+device1: 'cuda:0'
+device2: 'cuda:1'
+
+agent: 'DQN'

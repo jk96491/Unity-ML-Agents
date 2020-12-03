@@ -1,14 +1,14 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from Modules.CNN_Layer import CNN
+import torch.nn.functional as F
 import Utils
 import numpy as np
 
 
-class visual_obs_actor(nn.Module):
+class visual_obs_dqn(nn.Module):
     def __init__(self, action_space, learning_rate, device):
-        super(visual_obs_actor, self).__init__()
+        super(visual_obs_dqn, self).__init__()
         self.learning_rate = learning_rate
         self.action_space = action_space
         self.device = device
@@ -17,8 +17,7 @@ class visual_obs_actor(nn.Module):
 
         self.fc1 = nn.Linear(420 * 256, 512)
         self.fc2 = nn.Linear(512, 128)
-        self.fc3 = nn.Sequential(nn.Linear(128, self.action_space ),
-                                 nn.Softmax())
+        self.fc3 = nn.Linear(128, self.action_space)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
 
@@ -29,24 +28,38 @@ class visual_obs_actor(nn.Module):
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        action = self.fc3(x)
-        return action
+        q_val = self.fc3(x)
+        return q_val
 
     def get_action(self, obs):
         obs = torch.FloatTensor(obs)
         obs = obs.to(self.device)
-        action = self.forward(obs)
-        action = np.asscalar(torch.argmax(action[0]).detach().cpu().clone().numpy())
+        q_val = self.forward(obs)
+        action = np.asscalar(torch.argmax(q_val[0]).detach().cpu().clone().numpy())
         return action
 
-    def Learn(self, obs, actions, advantages):
-        actions = torch.LongTensor(actions).to(self.device)
-        advantages = torch.gather(advantages.squeeze(1).to(self.device), dim=1, index=actions)
+    def Learn(self, target_model, train_batch, dis):
+        Q_val_List = []
+        Q_target_val_List = []
 
-        policy = self.forward(obs)
-        log_policy = torch.log(policy)
+        for state, action, reward, next_state, done in train_batch:
+            reward = torch.FloatTensor(reward)
+            q_val = self.forward(torch.FloatTensor(state))
+            target_q_val = target_model.forward(torch.FloatTensor(next_state))
 
-        loss = torch.mean(- log_policy * advantages.detach())
+            maxQ1 = torch.max(q_val.data)
+
+            if done:
+                q_val[0, action] = reward
+            else:
+                q_val[0, action] = reward + torch.mul(maxQ1, dis)
+
+            Q_val_List.append(q_val)
+            Q_target_val_List.append(target_q_val)
+
+        Q_val_List = torch.stack(Q_val_List).squeeze(1)
+        Q_target_val_List = torch.stack(Q_target_val_List).squeeze(1)
+        loss = torch.mean((Q_val_List - Q_target_val_List) ** 2)
 
         self.optimizer.zero_grad()
         loss.backward()
@@ -54,16 +67,10 @@ class visual_obs_actor(nn.Module):
 
         return loss
 
-    def save_weights(self, path):
-        torch.save(self.state_dict(), path)
 
-    def load_weights(self, path):
-        self.load_state_dict(torch.load(path))
-
-
-class vector_obs_actor(nn.Module):
+class vector_obs_dqn(nn.Module):
     def __init__(self, obs_size, action_space, learning_rate, device):
-        super(vector_obs_actor, self).__init__()
+        super(vector_obs_dqn, self).__init__()
         self.learning_rate = learning_rate
         self.obs_size = obs_size
 
@@ -71,8 +78,7 @@ class vector_obs_actor(nn.Module):
                                  nn.ReLU())
         self.fc2 = nn.Sequential(nn.Linear(128, 128),
                                  nn.ReLU())
-        self.fc3 = nn.Sequential(nn.Linear(128, action_space),
-                                 nn.Softmax())
+        self.fc3 = nn.Sequential(nn.Linear(128, action_space))
 
     def forward(self, obs):
         obs = Utils.convertToTensorInput(obs, self.obs_size, obs.shape[0])
@@ -81,12 +87,3 @@ class vector_obs_actor(nn.Module):
         q = self.fc3(x)
 
         return q
-
-    def save_weights(self, path):
-        torch.save(self.state_dict(), path)
-
-    def load_weights(self, path):
-        self.load_state_dict(torch.load(path))
-
-
-

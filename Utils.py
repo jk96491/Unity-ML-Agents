@@ -1,9 +1,10 @@
 import numpy as np
 import torch
-from Modules.Discrete.Actor import visual_obs_actor
-from Modules.Discrete.Actor import vector_obs_actor
-from Modules.Discrete.Critic import vector_obs_critic
-from Modules.Discrete.Critic import visual_obs_critic
+import yaml
+from types import SimpleNamespace as SN
+from Modules.Discrete import Actor
+from Modules.Discrete import Critic
+from Modules.Discrete import DQN
 
 
 def get_state_by_visual(data):
@@ -37,18 +38,27 @@ def unpack_batch(batch):
 
 def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        actor = visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
+        actor = Actor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        actor = vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
+        actor = Actor.vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return actor
 
 
 def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        critic = visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
+        critic = Critic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        critic = vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
+        critic = Critic.vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
+
+    return critic
+
+
+def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device):
+    if state_dim is None:
+        critic = DQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+    else:
+        critic = DQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
 
     return critic
 
@@ -56,6 +66,18 @@ def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
 def convertToTensorInput(input, input_size, batsize=1):
     input = np.reshape(input, [batsize, input_size])
     return torch.FloatTensor(input)
+
+
+def get_config(algorithm):
+    config_dir = '{0}/{1}'
+
+    with open(config_dir.format('config', "{}.yaml".format(algorithm)), "r") as f:
+        try:
+            config = yaml.load(f)
+        except yaml.YAMLError as exc:
+            assert False, "default.yaml error: {}".format(exc)
+
+    return SN(**config)
 
 
 class OU_noise:

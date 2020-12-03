@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from Modules.CNN_Layer import CNN
-import Utils
 
 
 class visual_obs_critic(nn.Module):
@@ -55,10 +54,8 @@ class visual_obs_critic(nn.Module):
         self.load_state_dict(torch.load(path))
 
 
-
-
 class vector_obs_critic(nn.Module):
-    def __init__(self, state_size, action_size, learning_rate):
+    def __init__(self, state_size, action_size, learning_rate, device):
         super(vector_obs_critic, self).__init__()
         self.learning_rate = learning_rate
         self.state_size = state_size

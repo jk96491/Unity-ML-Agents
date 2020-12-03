@@ -1,0 +1,12 @@
+GAMMA: 0.95
+BATCH_SIZE: 32
+ACTOR_LEARNING_RATE: 0.0001
+CRITIC_LEARNING_RATE: 0.001
+max_episode: 50000
+train_mode: True
+start_train_episode: 10
+
+device1: 'cuda:0'
+device2: 'cuda:1'
+
+agent: 'A2C'

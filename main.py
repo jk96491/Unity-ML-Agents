@@ -1,22 +1,18 @@
 from mlagents.envs.environment import UnityEnvironment
-from Learners.A2C_Learner import a2c_agent
+import Utils
+from agents import get_agents
 
 game = "AirCombat/Aircombat"
-env_name = 'Games/' + game
-
-run_episode = 500000
-test_episode = 100000
-
-start_train_episode = 10
-
-print_interval = 5
-save_interval = 100
+env_name = 'Games/{}'.format(game)
 
 if __name__ == '__main__':
+    args = Utils.get_config('DQN')
     env = UnityEnvironment(file_name=env_name)
-    default_brain = env.brain_names[0]
-    agent = a2c_agent(env)
 
-    agent.train()
+    default_brain = env.brain_names[0]
+    agent = get_agents(env, args)
+
+    if agent is not None:
+        agent.train()
 
     env.close()

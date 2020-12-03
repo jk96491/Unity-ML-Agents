@@ -4,17 +4,17 @@ import numpy as np
 
 
 class a2c_agent():
-    def __init__(self, env):
-        self.GAMMA = 0.95
+    def __init__(self, env, args):
+        self.GAMMA = args.GAMMA
         self.env = env
-        self.BATCH_SIZE = 32
-        self.ACTOR_LEARNING_RATE = 0.0001
-        self.CRITIC_LEARNING_RATE = 0.001
-        self.max_episode_num = 50000
-        self.train_mode = True
+        self.BATCH_SIZE = args.BATCH_SIZE
+        self.ACTOR_LEARNING_RATE = args.ACTOR_LEARNING_RATE
+        self.CRITIC_LEARNING_RATE = args.CRITIC_LEARNING_RATE
+        self.max_episode_num = args.max_episode
+        self.train_mode = args.train_mode
 
-        self.device1 = 'cuda:0' if torch.cuda.is_available() else 'cpu'
-        self.device2 = 'cuda:1' if torch.cuda.is_available() else 'cpu'
+        self.device1 = args.device1 if torch.cuda.is_available() else 'cpu'
+        self.device2 = args.device2 if torch.cuda.is_available() else 'cpu'
 
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
@@ -25,7 +25,7 @@ class a2c_agent():
         self.env = env
 
         self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1).to(self.device1)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device2).to(self.device2)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.CRITIC_LEARNING_RATE, self.device2).to(self.device2)
 
         self.save_epi_reward = []
 
@@ -82,10 +82,10 @@ class a2c_agent():
                 actor_loss = self.actor.Learn(torch.FloatTensor(states), actions, advantages)
 
                 state = next_state
-                episode_reward += reward[0]
+                episode_rewards += reward[0]
                 time += 1
 
-            print('Episode: ', ep + 1, 'Time: ', time, 'Reward: ', episode_reward, 'actor loss', actor_loss.item(),
+            print('Episode: ', ep + 1, 'Time: ', time, 'Reward: ', episode_rewards, 'actor loss', actor_loss.item(),
                   'critic loss', critic_loss.item())
 
             self.save_epi_reward.append(episode_reward)
