@@ -15,7 +15,7 @@ class visual_obs_actor(nn.Module):
 
         self.cnnLayer = CNN()
 
-        self.fc1 = nn.Linear(779 * 256, 512)
+        self.fc1 = nn.Linear(420 * 256, 512)
         self.fc2 = nn.Linear(512, 128)
         self.fc3 = nn.Sequential(nn.Linear(128, self.action_space ),
                                  nn.Softmax())

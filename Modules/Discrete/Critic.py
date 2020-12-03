@@ -13,7 +13,7 @@ class visual_obs_critic(nn.Module):
 
         self.cnnLayer = CNN()
 
-        self.fc1 = nn.Linear(779 * 256, 512)
+        self.fc1 = nn.Linear(420 * 256, 512)
         self.fc2 = nn.Linear(512, 128)
         self.fc3 = nn.Linear(128, action_space)
 
