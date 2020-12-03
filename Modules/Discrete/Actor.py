@@ -38,7 +38,7 @@ class visual_obs_actor(nn.Module):
 
     def Learn(self, obs, actions, advantages):
         actions = torch.LongTensor(actions).to(self.device)
-        advantages = torch.gather(advantages.squeeze(1), dim=1, index=actions)
+        advantages = torch.gather(advantages.squeeze(1).to(self.device), dim=1, index=actions)
 
         policy = self.get_action(obs)
         log_policy = torch.log(policy)

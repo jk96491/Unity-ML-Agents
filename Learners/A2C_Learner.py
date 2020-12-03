@@ -15,7 +15,8 @@ class a2c_agent():
         self.max_episode_num = 50000
         self.train_mode = True
 
-        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.device1 = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+        self.device2 = 'cuda:1' if torch.cuda.is_available() else 'cpu'
 
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
@@ -25,8 +26,8 @@ class a2c_agent():
 
         self.env = env
 
-        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).to(self.device)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).to(self.device)
+        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1).to(self.device1)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device2).to(self.device2)
 
         self.save_epi_reward = []
 
@@ -52,15 +53,13 @@ class a2c_agent():
                 reward = env_info.rewards[0]
                 done = env_info.local_done[0]
 
-                #state = np.reshape(state, [1, self.state_dim])
-               #next_state = np.reshape(next_state, [1, self.state_dim])
                 action = np.reshape(action, [1, 1])
                 reward = np.reshape(reward, [1, 1])
 
                 v_value = self.critic.predict(state)[0]
                 next_v_value = self.critic.predict(next_state)[0]
 
-                train_reward = torch.FloatTensor((reward + 8) / 8).to(self.device)
+                train_reward = torch.FloatTensor((reward + 8) / 8).to(self.device2)
                 advantage, y_i = Utils.advantage_td_target(train_reward, v_value, next_v_value, done, self.GAMMA)
 
                 batch_state.append(state)
