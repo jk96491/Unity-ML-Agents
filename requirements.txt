@@ -1,0 +1,2 @@
+mlagents==0.10.0
+torch==1.4.0
