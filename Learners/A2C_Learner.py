@@ -57,8 +57,8 @@ class a2c_agent():
                 action = np.reshape(action, [1, 1])
                 reward = np.reshape(reward, [1, 1])
 
-                v_value = self.critic.predict(state)[0].detach().numpy()
-                next_v_value = self.critic.predict(next_state)[0].detach().numpy()
+                v_value = self.critic.predict(state)[0].detach().cpu().numpy()
+                next_v_value = self.critic.predict(next_state)[0].detach().cpu().numpy()
 
                 train_reward = (reward + 8) / 8
                 advantage, y_i = Utils.advantage_td_target(train_reward, v_value, next_v_value, done, self.GAMMA)
