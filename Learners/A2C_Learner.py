@@ -1,8 +1,6 @@
-import numpy as np
 import Utils
 import torch
-import torch.nn as nn
-import copy
+import numpy as np
 
 
 class a2c_agent():
@@ -22,7 +20,7 @@ class a2c_agent():
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
 
         self.state_dim = 0
-        self.action_dim =self. env_info.action_masks.shape[1]
+        self.action_dim = self.env_info.action_masks.shape[1]
 
         self.env = env
 
@@ -77,8 +75,6 @@ class a2c_agent():
                 actions = Utils.unpack_batch(batch_action)
                 td_targets = torch.stack(batch_td_target, dim=0)
                 advantages = torch.stack(batch_advantage, dim=0)
-                #td_targets = Utils.unpack_batch(batch_td_target)
-                #advantages = Utils.unpack_batch(batch_advantage)
 
                 batch_state, batch_action, batch_td_target, batch_advantage = [], [], [], []
 
@@ -95,5 +91,5 @@ class a2c_agent():
             self.save_epi_reward.append(episode_reward)
 
             if ep % 10 == 0:
-                self.actor.save_weights('pendulum_actor.th')
-                self.critic.save_weights('pendulum_critic.th')
+                self.actor.save_weights('aircombat_actor.th')
+                self.critic.save_weights('aircombat_critic.th')
