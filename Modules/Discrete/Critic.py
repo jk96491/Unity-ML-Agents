@@ -21,7 +21,7 @@ class visual_obs_critic(nn.Module):
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
-        obs.cuda(self.device)
+        obs.to(self.device)
         x = self.cnnLayer(obs)
 
         x = x.view(x.size(0), -1)
@@ -33,7 +33,7 @@ class visual_obs_critic(nn.Module):
         return q_val
 
     def predict(self, obs):
-        obs = torch.FloatTensor(obs).cuda(self.device)
+        obs = torch.FloatTensor(obs).to(self.device)
         q_val = self.forward(obs)
         return q_val
 

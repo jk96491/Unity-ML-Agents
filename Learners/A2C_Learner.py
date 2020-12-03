@@ -25,8 +25,8 @@ class a2c_agent():
 
         self.env = env
 
-        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).cuda(self.device)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).cuda(self.device)
+        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).to(self.device)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device).to(self.device)
 
         self.save_epi_reward = []
 

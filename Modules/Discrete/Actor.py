@@ -23,7 +23,7 @@ class visual_obs_actor(nn.Module):
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
-        obs = obs.cuda(self.device)
+        obs = obs.to(self.device)
         x = self.cnnLayer(obs)
         x = x.view(x.size(0), -1)
         x = F.relu(self.fc1(x))
@@ -32,7 +32,7 @@ class visual_obs_actor(nn.Module):
         return action
 
     def get_action(self, obs):
-        obs = torch.FloatTensor(obs).cuda(self.device)
+        obs = torch.FloatTensor(obs).to(self.device)
         action = self.forward(obs)
         return action
 
