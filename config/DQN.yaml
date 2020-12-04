@@ -6,7 +6,7 @@ train_mode: True
 buffer_size: 5000
 
 start_train_episode: 10
-target_update_interval: 20
+target_update_interval: 200
 
 device1: 'cuda:0'
 device2: 'cuda:1'
