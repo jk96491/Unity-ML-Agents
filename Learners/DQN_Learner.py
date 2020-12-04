@@ -5,7 +5,7 @@ import copy
 from Memory.Replay_Memory import Replay_buffer
 
 
-class dqn_agents():
+class dqn_agents:
     def __init__(self, env, args):
         self.args = args
         self.env = env
