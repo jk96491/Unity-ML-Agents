@@ -27,9 +27,10 @@ class visual_obs_dqn(Model):
 
         self.model.build(input_shape=[None, 480, 270, 3])
 
-    def call(self, x):
-        x = np.array(x, dtype=np.float)
-        x = self.model(x)
+    def call(self, obs):
+        obs = np.array(obs, dtype=np.float)
+        obs = (obs - (255.0 / 2)) / (255.0 / 2)
+        x = self.model(obs)
         return x
 
     def get_action(self, obs):
