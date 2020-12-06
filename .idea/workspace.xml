@@ -22,16 +22,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CMS_EDU/trunk" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/Testing" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\JGY\Desktop\ML_Agents" />
       <recent name="C:\Users\JGY\Desktop\ML_Agents\Modules\Discrete" />
       <recent name="C:\Users\JGY\Desktop\ML_Agents\Modules" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\Modules\Tensorflow\continuous" />
+      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\config" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -48,6 +49,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Modules/Discrete/Actor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DQN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ML_Agents" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Modules/Tensorflow/discrete" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Modules/Tensorflow/discrete/DQN.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,6 +102,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.DQN" />
         <item itemvalue="Python.Actor" />
       </list>
     </recent_temporary>
@@ -103,34 +126,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="676" y="145" key="#main/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606976646504" />
-    <state width="1649" height="466" key="DebuggerActiveHint" timestamp="1607233770461">
+    <state width="1649" height="466" key="DebuggerActiveHint" timestamp="1607239698771">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233770461" />
+    <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239698771" />
     <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1606986030867" />
-    <state x="2803" y="250" key="FileChooserDialogImpl" timestamp="1607233195532">
+    <state x="2803" y="250" key="FileChooserDialogImpl" timestamp="1607238764912">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2803" y="250" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233195532" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1607233825024">
+    <state x="2803" y="250" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238764912" />
+    <state width="1899" height="231" key="GridCell.Tab.0.bottom" timestamp="1607239899243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233825024" />
+    <state width="1899" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239899243" />
     <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1607233825024">
+    <state width="1899" height="231" key="GridCell.Tab.0.center" timestamp="1607239899243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233825024" />
+    <state width="1899" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239899243" />
     <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1607233825024">
+    <state width="1899" height="231" key="GridCell.Tab.0.left" timestamp="1607239899242">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233825024" />
+    <state width="1899" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239899242" />
     <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1607233825024">
+    <state width="1899" height="231" key="GridCell.Tab.0.right" timestamp="1607239899243">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233825024" />
+    <state width="1899" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239899243" />
     <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1606986162108">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -148,10 +171,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1606971222113">
+    <state width="968" height="528" key="XDebugger.FullValuePopup" timestamp="1607238426487">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606971222113" />
+    <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238426487" />
     <state x="1955" y="122" width="1441" height="1027" maximized="true" key="dock-window-1" timestamp="1607231403792">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -164,9 +187,40 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="1920" y="0" width="1441" height="1047" key="dock-window-3/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607233400718" />
-    <state x="653" y="251" width="613" height="538" key="find.popup" timestamp="1606978853127">
+    <state x="1920" y="0" width="1441" height="1047" key="dock-window-4" timestamp="1607234522921">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="0" width="1441" height="1047" key="dock-window-4/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607234522921" />
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-5" timestamp="1607239877556">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-5/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239877556" />
+    <state x="1920" y="49" width="1441" height="768" maximized="true" key="dock-window-6" timestamp="1607239842619">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="49" width="1441" height="768" maximized="true" key="dock-window-6/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239842619" />
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-7" timestamp="1607239846581">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-7/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239846581" />
+    <state x="1920" y="0" width="1441" height="768" maximized="true" key="dock-window-8" timestamp="1607239877556">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1920" y="0" width="1441" height="768" maximized="true" key="dock-window-8/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607239877556" />
+    <state x="653" y="251" width="613" height="538" key="find.popup" timestamp="1607238564369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="653" y="251" width="613" height="538" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606978853127" />
+    <state x="653" y="251" width="613" height="538" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238564369" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Learners/DQN_Learner.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

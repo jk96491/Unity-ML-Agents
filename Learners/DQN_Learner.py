@@ -1,4 +1,3 @@
-import torch
 import Utils
 import numpy as np
 import copy
@@ -21,7 +20,7 @@ class dqn_agents:
         if self.args.framework == 'torch':
             self.device1 = Utils.get_device(args.device1)
         else:
-            self.device1 = args.device1 if torch.cuda.is_available() else 'cpu'
+            self.device1 = Utils.get_device(args.device1)
 
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
@@ -30,8 +29,13 @@ class dqn_agents:
         self.action_dim = self.env_info.action_masks.shape[1]
 
         self.env = env
-        self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1)
-        self.target_model = copy.deepcopy(self.model)
+        self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework)
+
+        if self.args.framework == 'torch':
+            self.target_model = copy.deepcopy(self.model)
+        else:
+            self.target_model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework)
+#            self.target_model.trainable_variables = self.model.trainable_variables
 
         self.save_epi_reward = []
 

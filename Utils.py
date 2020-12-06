@@ -3,7 +3,7 @@ import torch
 import yaml
 from types import SimpleNamespace as SN
 from Modules.Pytoch.Discrete import Actor as torchActor, Critic as torchCritic, DQN as torchDQN
-
+from Modules.Tensorflow.discrete import DQN as tensorflowDQN
 
 def get_state_by_visual(data):
     data = np.uint8(255 * np.array(data))
@@ -45,13 +45,16 @@ def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     return critic
 
 
-def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device):
+def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device, framework):
     if state_dim is None:
-        critic = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+        if framework == 'torch':
+            dqn = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+        else:
+            dqn = tensorflowDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
     else:
-        critic = torchDQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
+        dqn = torchDQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
 
-    return critic
+    return dqn
 
 
 def convertToTensorInput(input, input_size, batsize=1):

@@ -51,9 +51,9 @@ class visual_obs_dqn(nn.Module):
             maxQ1 = torch.max(q_val.data)
 
             if done:
-                q_val[0, action] = reward
+                target_q_val[0, action] = reward
             else:
-                q_val[0, action] = reward + torch.mul(maxQ1, dis)
+                target_q_val[0, action] = reward + torch.mul(maxQ1, dis)
 
             Q_val_List.append(q_val)
             Q_target_val_List.append(target_q_val)

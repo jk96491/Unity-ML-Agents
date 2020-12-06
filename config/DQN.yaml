@@ -13,4 +13,4 @@ device2: 'cuda:1'
 
 agent: 'DQN'
 
-framework: 'torch'
+framework: 'tensorflow'
