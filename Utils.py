@@ -2,9 +2,7 @@ import numpy as np
 import torch
 import yaml
 from types import SimpleNamespace as SN
-from Modules.Discrete import Actor
-from Modules.Discrete import Critic
-from Modules.Discrete import DQN
+from Modules.Pytoch.Discrete import Actor as torchActor, Critic as torchCritic, DQN as torchDQN
 
 
 def get_state_by_visual(data):
@@ -17,7 +15,8 @@ def get_state_by_visual(data):
     return np.array(state).reshape(data.shape[0], data.shape[3], data.shape[1], data.shape[2])
 
 
-def advantage_td_target(reward, v_value, next_v_value, done, GAMMA):
+def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, device):
+    reward = torch.FloatTensor((reward + 8) / 8).to(device)
     if done:
         y_k = v_value
         advantage = y_k - v_value
@@ -28,37 +27,29 @@ def advantage_td_target(reward, v_value, next_v_value, done, GAMMA):
     return advantage, y_k
 
 
-def unpack_batch(batch):
-    unpack = batch[0]
-    for idx in range(len(batch) - 1):
-        unpack = np.append(unpack, batch[idx + 1], axis=0)
-
-    return unpack
-
-
 def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        actor = Actor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
+        actor = torchActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        actor = Actor.vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
+        actor = torchActor.vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return actor
 
 
 def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     if state_dim is None:
-        critic = Critic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
+        critic = torchCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
     else:
-        critic = Critic.vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
+        critic = torchCritic.vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return critic
 
 
 def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device):
     if state_dim is None:
-        critic = DQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+        critic = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
     else:
-        critic = DQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
+        critic = torchDQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
 
     return critic
 
@@ -80,6 +71,12 @@ def get_config(algorithm):
     return SN(**config)
 
 
+def get_device(device_name):
+    device = device_name if torch.cuda.is_available() else 'cpu'
+    return device
+
+
+
 class OU_noise:
     def __init__(self, action_size):
         self.reset()
@@ -95,6 +92,8 @@ class OU_noise:
         dx = self.theta * (self.mu - self.X) + self.sigma * np.random.randn(len(self.X))
         self.X += dx
         return self.X
+
+
 
 
 

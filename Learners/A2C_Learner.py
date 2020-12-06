@@ -1,11 +1,11 @@
 import Utils
-import torch
 import numpy as np
 
 
 class a2c_agent():
     def __init__(self, env, args):
         self.GAMMA = args.GAMMA
+        self.args = args
         self.env = env
         self.BATCH_SIZE = args.BATCH_SIZE
         self.ACTOR_LEARNING_RATE = args.ACTOR_LEARNING_RATE
@@ -13,8 +13,12 @@ class a2c_agent():
         self.max_episode_num = args.max_episode
         self.train_mode = args.train_mode
 
-        self.device1 = args.device1 if torch.cuda.is_available() else 'cpu'
-        self.device2 = args.device2 if torch.cuda.is_available() else 'cpu'
+        if self.args.framework == 'torch':
+            self.device1 = Utils.get_device(args.device1)
+            self.device2 = Utils.get_device(args.device2)
+        else:
+            self.device1 = Utils.get_device(args.device1)
+            self.device2 = Utils.get_device(args.device2)
 
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
@@ -57,8 +61,7 @@ class a2c_agent():
                 v_value = self.critic.predict(state)[0]
                 next_v_value = self.critic.predict(next_state)[0]
 
-                train_reward = torch.FloatTensor((reward + 8) / 8).to(self.device2)
-                advantage, y_i = Utils.advantage_td_target(train_reward, v_value, next_v_value, done, self.GAMMA)
+                advantage, y_i = Utils.advantage_td_target(reward, v_value, next_v_value, done, self.GAMMA, self.device2)
 
                 batch_state.append(state)
                 batch_action.append(action)
@@ -71,15 +74,15 @@ class a2c_agent():
                     time += 1
                     continue
 
-                states = Utils.unpack_batch(batch_state)
-                actions = Utils.unpack_batch(batch_action)
-                td_targets = torch.stack(batch_td_target, dim=0)
-                advantages = torch.stack(batch_advantage, dim=0)
+                states = batch_state
+                actions = batch_action
+                td_targets = batch_td_target
+                advantages = batch_advantage
 
                 batch_state, batch_action, batch_td_target, batch_advantage = [], [], [], []
 
                 critic_loss = self.critic.Learn(states, td_targets)
-                actor_loss = self.actor.Learn(torch.FloatTensor(states), actions, advantages)
+                actor_loss = self.actor.Learn(states, actions, advantages)
 
                 state = next_state
                 episode_rewards += reward[0]

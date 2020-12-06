@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from Modules.CNN_Layer import CNN
+from Modules.Pytoch.CNN_Layer import CNN
 import Utils
 import numpy as np
 
@@ -41,7 +41,10 @@ class visual_obs_actor(nn.Module):
         return action
 
     def Learn(self, obs, actions, advantages):
-        actions = torch.LongTensor(actions).to(self.device)
+        obs = torch.FloatTensor(obs).squeeze(1)
+        advantages = torch.stack(advantages, dim=0)
+        actions = torch.LongTensor(actions).to(self.device).squeeze(1)
+
         advantages = torch.gather(advantages.squeeze(1).to(self.device), dim=1, index=actions)
 
         policy = self.forward(obs)
@@ -70,6 +73,7 @@ class vector_obs_actor(nn.Module):
         self.device = device
 
         self.fc1 = nn.Sequential(nn.Linear(obs_size, 128),
+
                                  nn.ReLU())
         self.fc2 = nn.Sequential(nn.Linear(128, 128),
                                  nn.ReLU())

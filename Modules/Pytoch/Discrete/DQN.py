@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from Modules.CNN_Layer import CNN
+from Modules.Pytoch.CNN_Layer import CNN
 import torch.nn.functional as F
 import Utils
 import numpy as np

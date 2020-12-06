@@ -18,7 +18,10 @@ class dqn_agents:
         self.start_train_episode = args.start_train_episode
         self.target_update_interval = args.target_update_interval
 
-        self.device1 = args.device1 if torch.cuda.is_available() else 'cpu'
+        if self.args.framework == 'torch':
+            self.device1 = Utils.get_device(args.device1)
+        else:
+            self.device1 = args.device1 if torch.cuda.is_available() else 'cpu'
 
         self.default_brain = self.env.brain_names[0]
         self.env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]

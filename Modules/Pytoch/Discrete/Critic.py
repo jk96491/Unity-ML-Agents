@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from Modules.CNN_Layer import CNN
+from Modules.Pytoch.CNN_Layer import CNN
 
 
 class visual_obs_critic(nn.Module):
@@ -39,7 +39,9 @@ class visual_obs_critic(nn.Module):
 
         return q_val
 
-    def Learn(self, states, td_target):
+    def Learn(self, states, td_targets):
+        states = torch.FloatTensor(states).squeeze(1)
+        td_target = torch.stack(td_targets, dim=0)
         predict = self.predict(states)
         loss = torch.mean((predict - td_target) ** 2)
 

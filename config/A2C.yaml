@@ -10,3 +10,5 @@ device1: 'cuda:0'
 device2: 'cuda:1'
 
 agent: 'A2C'
+
+framework: 'torch'
