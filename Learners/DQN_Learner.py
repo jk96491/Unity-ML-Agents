@@ -27,7 +27,7 @@ class dqn_agents:
         self.action_dim = self.env_info.action_masks.shape[1]
 
         self.env = env
-        self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1).to(self.device1)
+        self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1)
         self.target_model = copy.deepcopy(self.model)
 
         self.save_epi_reward = []

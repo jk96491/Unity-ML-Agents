@@ -18,6 +18,8 @@ class visual_obs_critic(nn.Module):
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
 
+        self.to(self.device)
+
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
         obs.to(self.device)
@@ -61,6 +63,8 @@ class vector_obs_critic(nn.Module):
         self.state_size = state_size
         self.action_size = action_size
 
+        self.device = device
+
         self.layer1 = nn.Sequential(nn.Linear(state_size, 128),
                                     nn.ReLU())
         self.layer2 = nn.Sequential(nn.Linear(130, 128),
@@ -68,6 +72,8 @@ class vector_obs_critic(nn.Module):
         self.layer3 = nn.Sequential(nn.Linear(128, 128),
                                     nn.ReLU())
         self.layer4 = nn.Sequential(nn.Linear(128, 1))
+
+        self.to(self.device)
 
     def forward(self, obs, action):
         obs = convertToTensorInput(obs, self.obs_size, obs.shape[0])

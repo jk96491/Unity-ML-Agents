@@ -21,6 +21,7 @@ class visual_obs_actor(nn.Module):
                                  nn.Softmax())
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        self.to(self.device)
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
@@ -66,6 +67,7 @@ class vector_obs_actor(nn.Module):
         super(vector_obs_actor, self).__init__()
         self.learning_rate = learning_rate
         self.obs_size = obs_size
+        self.device = device
 
         self.fc1 = nn.Sequential(nn.Linear(obs_size, 128),
                                  nn.ReLU())
@@ -73,6 +75,8 @@ class vector_obs_actor(nn.Module):
                                  nn.ReLU())
         self.fc3 = nn.Sequential(nn.Linear(128, action_space),
                                  nn.Softmax())
+
+        self.to(self.device)
 
     def forward(self, obs):
         obs = Utils.convertToTensorInput(obs, self.obs_size, obs.shape[0])

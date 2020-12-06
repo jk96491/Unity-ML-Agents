@@ -20,6 +20,7 @@ class visual_obs_dqn(nn.Module):
         self.fc3 = nn.Linear(128, self.action_space)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
+        self.to(self.device)
 
     def forward(self, obs):
         obs = (obs - (255.0 / 2)) / (255.0 / 2)
@@ -73,12 +74,15 @@ class vector_obs_dqn(nn.Module):
         super(vector_obs_dqn, self).__init__()
         self.learning_rate = learning_rate
         self.obs_size = obs_size
+        self.device = device
 
         self.fc1 = nn.Sequential(nn.Linear(obs_size, 128),
                                  nn.ReLU())
         self.fc2 = nn.Sequential(nn.Linear(128, 128),
                                  nn.ReLU())
         self.fc3 = nn.Sequential(nn.Linear(128, action_space))
+
+        self.to(device)
 
     def forward(self, obs):
         obs = Utils.convertToTensorInput(obs, self.obs_size, obs.shape[0])
