@@ -8,7 +8,7 @@ class CNN(Model):
         super(CNN, self).__init__()
         model = keras.Sequential()
         model.add(keras.layers.Conv2D(filters=32, kernel_size=3, activation=tf.nn.relu, padding='SAME',
-                                      input_shape=(3, 480, 270)))
+                                      input_shape=(480, 270, 3)))
         model.add(keras.layers.MaxPool2D(padding='SAME'))
         model.add(keras.layers.Conv2D(filters=64, kernel_size=3, activation=tf.nn.relu, padding='SAME'))
         model.add(keras.layers.MaxPool2D(padding='SAME'))

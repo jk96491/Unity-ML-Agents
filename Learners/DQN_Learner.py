@@ -42,7 +42,7 @@ class dqn_agents:
             epsilon = 1 / ((ep / 10) + 1)
 
             env_info = self.env.reset(train_mode=self.train_mode)[self.default_brain]
-            state = Utils.get_state_by_visual(env_info.visual_observations[0])
+            state = Utils.get_state_by_visual(env_info.visual_observations[0], self.args.framework)
 
             episode_rewards = 0
             done = False
@@ -55,7 +55,7 @@ class dqn_agents:
                     action = self.model.get_action(state)
 
                 env_info = self.env.step(action)[self.default_brain]
-                next_state = Utils.get_state_by_visual(env_info.visual_observations[0])
+                next_state = Utils.get_state_by_visual(env_info.visual_observations[0], self.args.framework)
                 reward = env_info.rewards[0]
                 episode_rewards += reward
                 done = env_info.local_done[0]

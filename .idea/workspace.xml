@@ -126,34 +126,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="676" y="145" key="#main/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1606976646504" />
-    <state width="1649" height="466" key="DebuggerActiveHint" timestamp="1607240270335">
+    <state width="1649" height="466" key="DebuggerActiveHint" timestamp="1607242465369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607240270335" />
+    <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607242465369" />
     <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1606986030867" />
     <state x="2803" y="250" key="FileChooserDialogImpl" timestamp="1607238764912">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2803" y="250" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238764912" />
-    <state width="1899" height="231" key="GridCell.Tab.0.bottom" timestamp="1607241641348">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1607242547723">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="231" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607241641348" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607242547723" />
     <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="231" key="GridCell.Tab.0.center" timestamp="1607241641348">
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1607242547723">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="231" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607241641348" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607242547723" />
     <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="231" key="GridCell.Tab.0.left" timestamp="1607241641348">
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1607242547723">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="231" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607241641348" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607242547723" />
     <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="231" key="GridCell.Tab.0.right" timestamp="1607241641348">
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1607242547723">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="231" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607241641348" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607242547723" />
     <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1606986162108">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -223,5 +223,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="653" y="251" width="613" height="538" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238564369" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Modules/Tensorflow/CNN_Layer.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Modules/Tensorflow/discrete/DQN.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

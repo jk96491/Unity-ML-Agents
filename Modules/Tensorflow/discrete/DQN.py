@@ -25,7 +25,7 @@ class visual_obs_dqn(Model):
 
         self.optimizers = optim.Adam(learning_rate=0.001)
 
-        self.model.build(input_shape=[None, 3, 480, 270])
+        self.model.build(input_shape=[None, 480, 270, 3])
 
     def call(self, x):
         x = np.array(x, dtype=np.float)

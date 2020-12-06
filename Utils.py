@@ -7,14 +7,18 @@ from Modules.Tensorflow.discrete import DQN as tensorflowDQN
 import copy
 
 
-def get_state_by_visual(data):
-    data = np.uint8(255 * np.array(data))
+def get_state_by_visual(data, framework):
 
-    state = []
-    for i in range(data.shape[3]):
-        state.append(data[:, :, :, i])
+    if framework == 'torch':
+        data = np.uint8(255 * np.array(data))
 
-    return np.array(state).reshape(data.shape[0], data.shape[3], data.shape[1], data.shape[2])
+        state = []
+        for i in range(data.shape[3]):
+            state.append(data[:, :, :, i])
+
+        return np.array(state).reshape(data.shape[0], data.shape[3], data.shape[1], data.shape[2])
+    else:
+        return data
 
 
 def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, device):
