@@ -74,7 +74,7 @@ class dqn_agents:
                     loss = self.model.Learn(self.target_model, minibatch, self.GAMMA)
 
                     if (total_step % self.target_update_interval) == 0:
-                        Utils.update_target(self.model, self.target_model)
+                        Utils.update_target(self.model, self.target_model, self.args.framework)
                         print("target updated!!!")
 
             print("episode: {} / step: {} / reward: {:.2f} / loss: {:.4f} / epsilon: {:.3f}".format
