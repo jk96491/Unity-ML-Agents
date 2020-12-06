@@ -1,6 +1,5 @@
 import Utils
 import numpy as np
-import copy
 from Memory.Replay_Memory import Replay_buffer
 
 
@@ -31,11 +30,7 @@ class dqn_agents:
         self.env = env
         self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework)
 
-        if self.args.framework == 'torch':
-            self.target_model = copy.deepcopy(self.model)
-        else:
-            self.target_model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework)
-#            self.target_model.trainable_variables = self.model.trainable_variables
+        self.target_model = Utils.init_target_network(self.args.framework, self.model)
 
         self.save_epi_reward = []
 
@@ -79,11 +74,8 @@ class dqn_agents:
                     loss = self.model.Learn(self.target_model, minibatch, self.GAMMA)
 
                     if (total_step % self.target_update_interval) == 0:
-                        self.update_target(self.model, self.target_model)
+                        Utils.update_target(self.model, self.target_model)
                         print("target updated!!!")
 
             print("episode: {} / step: {} / reward: {:.2f} / loss: {:.4f} / epsilon: {:.3f}".format
                   (ep, step_count, episode_rewards, loss, epsilon))
-
-    def update_target(self, mainDQN, targetDQN):
-        targetDQN.load_state_dict(mainDQN.state_dict())

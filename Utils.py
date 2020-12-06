@@ -4,6 +4,8 @@ import yaml
 from types import SimpleNamespace as SN
 from Modules.Pytoch.Discrete import Actor as torchActor, Critic as torchCritic, DQN as torchDQN
 from Modules.Tensorflow.discrete import DQN as tensorflowDQN
+import copy
+
 
 def get_state_by_visual(data):
     data = np.uint8(255 * np.array(data))
@@ -57,6 +59,16 @@ def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device, framework):
     return dqn
 
 
+def init_target_network(framework, model):
+    if framework == 'torch':
+        target_model = copy.deepcopy(model)
+    else:
+        target_model = get_discrete_dqn(None, model.action_space, model.learning_rate, model.device, framework)
+        target_model.set_weights(model.get_weights())
+
+    return target_model
+
+
 def convertToTensorInput(input, input_size, batsize=1):
     input = np.reshape(input, [batsize, input_size])
     return torch.FloatTensor(input)
@@ -78,6 +90,12 @@ def get_device(device_name):
     device = device_name if torch.cuda.is_available() else 'cpu'
     return device
 
+
+def update_target(mainDQN, targetDQN, framework):
+    if framework == 'torch':
+        targetDQN.load_state_dict(mainDQN.state_dict())
+    else:
+        targetDQN.set_weights(mainDQN.get_weights())
 
 
 class OU_noise:

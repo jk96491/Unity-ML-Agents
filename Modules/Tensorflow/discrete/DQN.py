@@ -25,6 +25,8 @@ class visual_obs_dqn(Model):
 
         self.optimizers = optim.Adam(learning_rate=0.001)
 
+        self.model.build(input_shape=[None, 3, 480, 270])
+
     def call(self, x):
         x = np.array(x, dtype=np.float)
         x = self.model(x)
@@ -32,14 +34,12 @@ class visual_obs_dqn(Model):
 
     def get_action(self, obs):
         q_val = self.call(obs)
-        action = np.asscalar(tf.argmax(q_val[0]))
+        action = tf.argmax(q_val[0]).numpy()
         return action
 
     def Learn(self, target_model, train_batch, dis):
-        Q_val_List = []
-        Q_target_val_List = []
-        loss = []
 
+        loss = []
         for state, action, reward, next_state, done in train_batch:
             with tf.GradientTape() as Tape:
                 q_val = self.call(state)
@@ -53,10 +53,9 @@ class visual_obs_dqn(Model):
                 else:
                     target_q_val[0][action] = reward + maxQ1 * dis
 
-                cost = tf.reduce_mean(tf.square(q_val - target_q_val))
-                loss.append(cost)
+                loss.append(tf.reduce_mean(tf.square(q_val - target_q_val)))
 
-            gradients = Tape.gradient(cost, self.trainable_variables)
+            gradients = Tape.gradient(loss, self.trainable_variables)
             self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
 
         return tf.reduce_mean(loss)
