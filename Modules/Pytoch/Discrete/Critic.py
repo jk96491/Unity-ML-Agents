@@ -5,12 +5,13 @@ from Modules.Pytoch.CNN_Layer import CNN
 
 
 class visual_obs_critic(nn.Module):
-    def __init__(self, action_space, learning_rate, device):
+    def __init__(self, action_space, learning_rate, device, env_info):
         super(visual_obs_critic, self).__init__()
         self.learning_rate = learning_rate
         self.device = device
+        self.env_info = env_info
 
-        self.cnnLayer = CNN()
+        self.cnnLayer = CNN(self.env_info)
 
         self.fc1 = nn.Linear(420 * 256, 512)
         self.fc2 = nn.Linear(512, 128)

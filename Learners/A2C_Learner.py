@@ -28,8 +28,8 @@ class a2c_agent():
 
         self.env = env
 
-        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.CRITIC_LEARNING_RATE, self.device2)
+        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1, self.args.framework, self.env_info)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.CRITIC_LEARNING_RATE, self.device2, self.args.framework, self.env_info)
 
         self.save_epi_reward = []
 
@@ -61,7 +61,7 @@ class a2c_agent():
                 v_value = self.critic.predict(state)[0]
                 next_v_value = self.critic.predict(next_state)[0]
 
-                advantage, y_i = Utils.advantage_td_target(reward, v_value, next_v_value, done, self.GAMMA, self.device2)
+                advantage, y_i = Utils.advantage_td_target(reward, v_value, next_v_value, done, self.GAMMA, self.args.framework, self.device2)
 
                 batch_state.append(state)
                 batch_action.append(action)

@@ -11,4 +11,4 @@ device2: 'cuda:1'
 
 agent: 'A2C'
 
-framework: 'torch'
+framework: 'tensorflow'

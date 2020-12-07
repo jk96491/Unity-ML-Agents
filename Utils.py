@@ -3,7 +3,7 @@ import torch
 import yaml
 from types import SimpleNamespace as SN
 from Modules.Pytoch.Discrete import Actor as torchActor, Critic as torchCritic, DQN as torchDQN
-from Modules.Tensorflow.discrete import DQN as tensorflowDQN
+from Modules.Tensorflow.discrete import DQN as tensorflowDQN, Actor as tensorflowActor, Critic as tensorflowCritic
 import copy
 
 
@@ -21,8 +21,12 @@ def get_state_by_visual(data, framework):
         return data
 
 
-def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, device):
-    reward = torch.FloatTensor((reward + 8) / 8).to(device)
+def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, framework, device):
+    reward = (reward + 8) / 8
+
+    if framework == 'torch':
+        reward = torch.FloatTensor(reward).to(device)
+
     if done:
         y_k = v_value
         advantage = y_k - v_value
@@ -33,18 +37,24 @@ def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, device):
     return advantage, y_k
 
 
-def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
+def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device, framework, env_info):
     if state_dim is None:
-        actor = torchActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device)
+        if framework == 'torch':
+            actor = torchActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device, env_info)
+        else:
+            actor = tensorflowActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device, env_info)
     else:
         actor = torchActor.vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 
     return actor
 
 
-def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
+def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device, framework, env_info):
     if state_dim is None:
-        critic = torchCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device)
+        if framework == 'torch':
+            critic = torchCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device, env_info)
+        else:
+            critic = tensorflowCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device, env_info)
     else:
         critic = torchCritic.vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device)
 

@@ -7,7 +7,7 @@ game = "AirCombat/Aircombat"
 env_name = 'Games/{}'.format(game)
 
 if __name__ == '__main__':
-    args = Utils.get_config('DQN')
+    args = Utils.get_config('A2C')
     env = UnityEnvironment(file_name=env_name)
 
     default_brain = env.brain_names[0]
