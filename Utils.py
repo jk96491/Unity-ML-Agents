@@ -51,23 +51,23 @@ def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device):
     return critic
 
 
-def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device, framework):
+def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device, framework, env_info):
     if state_dim is None:
         if framework == 'torch':
-            dqn = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+            dqn = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device, env_info)
         else:
-            dqn = tensorflowDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device)
+            dqn = tensorflowDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device, env_info)
     else:
         dqn = torchDQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device)
 
     return dqn
 
 
-def init_target_network(framework, model):
+def init_target_network(framework, model, env_info):
     if framework == 'torch':
         target_model = copy.deepcopy(model)
     else:
-        target_model = get_discrete_dqn(None, model.action_space, model.learning_rate, model.device, framework)
+        target_model = get_discrete_dqn(None, model.action_space, model.learning_rate, model.device, framework, env_info)
         target_model.set_weights(model.get_weights())
 
     return target_model
