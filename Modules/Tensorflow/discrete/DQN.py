@@ -7,25 +7,25 @@ import numpy as np
 
 
 class visual_obs_dqn(Model):
-    def __init__(self, action_space, learning_rate, device):
+    def __init__(self, action_space, learning_rate, device, env_info):
         super(visual_obs_dqn, self).__init__()
 
         self.learning_rate = learning_rate
         self.action_space = action_space
         self.device = device
 
-        self.cnnLayer = CNN()
+        self.cnnLayer = CNN(env_info)
 
         weight_init = tf.keras.initializers.RandomNormal()
         self.model = tf.keras.Sequential()
         self.model.add(self.cnnLayer)
-        self.model.add(Dense(512, use_bias=True, kernel_initializer=weight_init, activation="relu"))
-        self.model.add(Dense(128, use_bias=True, kernel_initializer=weight_init, activation="relu"))
         self.model.add(Dense(self.action_space, use_bias=True, kernel_initializer=weight_init))
 
-        self.optimizers = optim.Adam(learning_rate=0.001)
+        self.optimizers = optim.Adam(learning_rate=learning_rate)
 
         self.model.build(input_shape=[None, 480, 270, 3])
+
+        print(self.model.summary())
 
     def call(self, obs):
         obs = np.array(obs, dtype=np.float)
@@ -60,6 +60,8 @@ class visual_obs_dqn(Model):
             self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
 
         return tf.reduce_mean(loss)
+
+
 
 
 
