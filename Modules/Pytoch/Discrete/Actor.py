@@ -57,7 +57,7 @@ class visual_obs_actor(nn.Module):
         loss.backward()
         self.optimizer.step()
 
-        return loss
+        return loss.item()
 
     def save_weights(self, path):
         torch.save(self.state_dict(), path)

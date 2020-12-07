@@ -49,7 +49,7 @@ class visual_obs_critic(Model):
         gradients = tape.gradient(loss, self.trainable_variables)
         self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
 
-        return loss
+        return loss.numpy()
 
 
 

@@ -54,7 +54,7 @@ class visual_obs_actor(Model):
         gradients = Tape.gradient(loss, self.trainable_variables)
         self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
 
-        return loss
+        return loss.numpy()
 
 
 
