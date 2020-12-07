@@ -88,8 +88,8 @@ class a2c_agent():
                 episode_rewards += reward[0]
                 time += 1
 
-            print('Episode: ', ep + 1, 'Time: ', time, 'Reward: ', episode_rewards, 'actor loss', actor_loss.item(),
-                  'critic loss', critic_loss.item())
+            print('Episode: ', ep + 1, 'Time: ', time, 'Reward: ', episode_rewards, 'actor loss', actor_loss,
+                  'critic loss', critic_loss)
 
             self.save_epi_reward.append(episode_reward)
 
