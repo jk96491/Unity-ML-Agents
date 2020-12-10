@@ -23,6 +23,10 @@ class DNN(nn.Module):
         x = data
         for layer in self.layers[:-1]:
             x = layer(x)
+
         x = self.layers[-1](x)
+
+        if self.activation is not None:
+            x = self.activation(x)
 
         return x

@@ -37,12 +37,15 @@ class visual_obs_critic(nn.Module):
 
         return q_val
 
-    def Learn(self, states, td_targets):
+    def get_loss(self, states, td_targets):
         states = torch.FloatTensor(states).squeeze(1)
         td_target = torch.stack(td_targets, dim=0)
         predict = self.predict(states)
         loss = torch.mean((predict - td_target) ** 2)
 
+        return loss
+
+    def Learn(self, loss):
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()

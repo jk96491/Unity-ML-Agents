@@ -7,7 +7,7 @@ import numpy as np
 
 
 class visual_obs_critic(Model):
-    def __init__(self, action_space, learning_rate, device, env_info):
+    def __init__(self, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_critic, self).__init__()
         self.learning_rate = learning_rate
         self.action_space = action_space
@@ -37,7 +37,15 @@ class visual_obs_critic(Model):
         q_val = self.call(obs)
         return q_val
 
-    def Learn(self, states, td_targets):
+    def Learn(self, Data):
+        loss = Data[0]
+        tape = Data[1]
+        gradients = tape.gradient(loss, self.trainable_variables)
+        self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
+
+        return loss.numpy()
+
+    def get_loss(self,  states, td_targets):
         loss = None
 
         states = np.asarray(states).squeeze(1)
@@ -46,10 +54,7 @@ class visual_obs_critic(Model):
             predict = self.predict(states)
             loss = tf.reduce_mean(tf.square(td_targets - predict))
 
-        gradients = tape.gradient(loss, self.trainable_variables)
-        self.optimizers.apply_gradients(zip(gradients, self.trainable_variables))
-
-        return loss.numpy()
+        return [loss, tape]
 
 
 

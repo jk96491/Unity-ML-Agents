@@ -82,9 +82,7 @@ class a2c_agent:
                 advantages = batch_advantage
 
                 batch_state, batch_action, batch_td_target, batch_advantage = [], [], [], []
-
-                critic_loss = self.critic.Learn(states, td_targets)
-                actor_loss = self.actor.Learn(states, actions, advantages)
+                critic_loss, actor_loss = self.learning(states, td_targets, actions, advantages)
 
                 state = next_state
                 episode_rewards += reward[0]
@@ -96,5 +94,13 @@ class a2c_agent:
             self.save_epi_reward.append(episode_reward)
 
             if ep % 10 == 0:
-                self.actor.save_weights('aircombat_actor.th')
-                self.critic.save_weights('aircombat_critic.th')
+                self.actor.save_weights('aircombat_actor')
+                self.critic.save_weights('aircombat_critic')
+
+    def learning(self, states, td_targets, actions, advantages):
+        critic_loss = self.critic.get_loss(states, td_targets)
+        self.critic.Learn(critic_loss)
+
+        actor_loss = self.actor.Learn(states, actions, advantages)
+
+        return critic_loss, actor_loss
