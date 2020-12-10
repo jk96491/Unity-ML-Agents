@@ -2,7 +2,7 @@ import Utils
 import numpy as np
 
 
-class a2c_agent():
+class a2c_agent:
     def __init__(self, env, args):
         self.GAMMA = args.GAMMA
         self.args = args
@@ -28,8 +28,10 @@ class a2c_agent():
 
         self.env = env
 
-        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1, self.args.framework, self.env_info)
-        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.CRITIC_LEARNING_RATE, self.device2, self.args.framework, self.env_info)
+        self.actor = Utils.get_discrete_actor(None, self.action_dim, self.ACTOR_LEARNING_RATE, self.device1,
+                                              self.args.framework, self.env_info, self.args.actor_hidden_layer)
+        self.critic = Utils.get_discrete_critic(None, self.action_dim, self.CRITIC_LEARNING_RATE, self.device2,
+                                                self.args.framework, self.env_info, self.args.critic_hidden_layer)
 
         self.save_epi_reward = []
 

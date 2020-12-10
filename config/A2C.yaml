@@ -11,4 +11,7 @@ device2: 'cuda:1'
 
 agent: 'A2C'
 
-framework: 'tensorflow'
+framework: 'torch'
+
+actor_hidden_layer: [512, 128]
+critic_hidden_layer: [512, 128]

@@ -14,3 +14,5 @@ device2: 'cuda:1'
 agent: 'DQN'
 
 framework: 'torch'
+
+hidden_layer: [512, 128]

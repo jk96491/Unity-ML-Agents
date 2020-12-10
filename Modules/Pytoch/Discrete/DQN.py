@@ -4,20 +4,19 @@ from Modules.Pytoch.CNN_Layer import CNN
 import torch.nn.functional as F
 import Utils
 import numpy as np
+from Modules.Pytoch.DNN_Layer import DNN
 
 
 class visual_obs_dqn(nn.Module):
-    def __init__(self, action_space, learning_rate, device, env_info):
+    def __init__(self, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_dqn, self).__init__()
         self.learning_rate = learning_rate
         self.action_space = action_space
         self.device = device
+        self.hidden = hidden
 
         self.cnnLayer = CNN(env_info)
-
-        self.fc1 = nn.Linear(420 * 256, 512)
-        self.fc2 = nn.Linear(512, 128)
-        self.fc3 = nn.Linear(128, self.action_space)
+        self.DnnLayer = DNN(420 * 256, None, self.action_space, self.hidden)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         self.to(self.device)
@@ -27,9 +26,7 @@ class visual_obs_dqn(nn.Module):
         obs = obs.to(self.device)
         x = self.cnnLayer(obs)
         x = x.view(x.size(0), -1)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        q_val = self.fc3(x)
+        q_val = self.DnnLayer(x)
         return q_val
 
     def get_action(self, obs):

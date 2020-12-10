@@ -1,21 +1,20 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from Modules.Pytoch.CNN_Layer import CNN
+from Modules.Pytoch.DNN_Layer import DNN
 
 
 class visual_obs_critic(nn.Module):
-    def __init__(self, action_space, learning_rate, device, env_info):
+    def __init__(self, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_critic, self).__init__()
         self.learning_rate = learning_rate
         self.device = device
         self.env_info = env_info
+        self.action_space = action_space
+        self.hidden = hidden
 
         self.cnnLayer = CNN(self.env_info)
-
-        self.fc1 = nn.Linear(420 * 256, 512)
-        self.fc2 = nn.Linear(512, 128)
-        self.fc3 = nn.Linear(128, action_space)
+        self.DnnLayer = DNN(420 * 256, None, self.action_space, self.hidden)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
 
@@ -28,9 +27,7 @@ class visual_obs_critic(nn.Module):
 
         x = x.view(x.size(0), -1)
 
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        q_val = self.fc3(x)
+        q_val = self.DnnLayer(x)
 
         return q_val
 
