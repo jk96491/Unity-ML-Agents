@@ -22,17 +22,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\Modules\Tensorflow\continuous" />
-      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\Modules\Pytoch" />
       <recent name="C:\Users\JGY\Desktop\ML_Agents" />
       <recent name="C:\Users\JGY\Desktop\ML_Agents\Modules\Discrete" />
       <recent name="C:\Users\JGY\Desktop\ML_Agents\Modules" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\config" />
+      <recent name="C:\Users\JGY\Desktop\Unity ML Agents\trunk\Modules\Tensorflow\continuous" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -126,34 +127,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="676" y="145" key="#main/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607313882099" />
-    <state width="1751" height="466" key="DebuggerActiveHint" timestamp="1607314163393">
+    <state width="1751" height="466" key="DebuggerActiveHint" timestamp="1607577719198">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1751" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607314163393" />
+    <state width="1751" height="466" key="DebuggerActiveHint/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607577719198" />
     <state width="1649" height="466" key="DebuggerActiveHint/0.0.1920.1040@0.0.1920.1040" timestamp="1606986030867" />
-    <state x="2803" y="250" key="FileChooserDialogImpl" timestamp="1607238764912">
+    <state x="2803" y="250" key="FileChooserDialogImpl" timestamp="1607481333857">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2803" y="250" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607238764912" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1607315802632">
+    <state x="2803" y="250" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607481333857" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1607580699420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607315802632" />
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607580699420" />
     <state width="1899" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1607315802632">
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1607580699420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607315802632" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607580699420" />
     <state width="1899" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1607315802632">
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1607580699420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607315802632" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607580699420" />
     <state width="1899" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1607315802632">
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1607580699420">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607315802632" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607580699420" />
     <state width="1899" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606986162108" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1606986162108">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -175,10 +176,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="968" height="528" key="XDebugger.FullValuePopup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607307774386" />
-    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-1" timestamp="1607307672828">
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-1" timestamp="1607578683559">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607307672828" />
+    <state x="1920" y="0" width="1441" height="1027" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607578683559" />
     <state x="1901" y="212" width="1441" height="717" maximized="true" key="dock-window-10" timestamp="1607241529184">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -187,14 +188,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="1920" y="79" width="1441" height="1027" maximized="true" key="dock-window-11/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607241712303" />
-    <state x="1920" y="10" width="1441" height="1027" maximized="true" key="dock-window-2" timestamp="1607309658343">
+    <state x="1920" y="0" width="1441" height="1027" key="dock-window-2" timestamp="1607582132449">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1920" y="10" width="1441" height="1027" maximized="true" key="dock-window-2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607309658343" />
-    <state x="1912" y="-8" width="1441" height="704" maximized="true" key="dock-window-3" timestamp="1607313941688">
+    <state x="1920" y="0" width="1441" height="1027" key="dock-window-2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607582132449" />
+    <state x="2023" y="0" width="1441" height="1027" maximized="true" key="dock-window-3" timestamp="1607582402210">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="1912" y="-8" width="1441" height="704" maximized="true" key="dock-window-3/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607313941688" />
+    <state x="2023" y="0" width="1441" height="1027" maximized="true" key="dock-window-3/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607582402210" />
     <state x="1920" y="0" width="1441" height="1047" key="dock-window-4" timestamp="1607234522921">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -223,5 +224,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="653" y="251" width="613" height="538" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607312916841" />
+    <state x="616" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1607580218442">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="173" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607580218442" />
   </component>
 </project>

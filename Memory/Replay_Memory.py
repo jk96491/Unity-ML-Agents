@@ -17,3 +17,6 @@ class Replay_buffer():
         mini_batch = random.sample(self.buffer, size)
 
         return mini_batch
+
+    def get_len(self):
+        return len(self.buffer)

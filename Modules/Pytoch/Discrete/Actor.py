@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from Modules.Pytoch.CNN_Layer import CNN
 import Utils
 import numpy as np
@@ -8,13 +7,15 @@ from Modules.Pytoch.DNN_Layer import DNN
 
 
 class visual_obs_actor(nn.Module):
-    def __init__(self, action_space, learning_rate, device, env_info, hidden):
+    def __init__(self, args, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_actor, self).__init__()
+        self.args = args
         self.learning_rate = learning_rate
         self.action_space = action_space
         self.device = device
         self.env_info = env_info
         self.hidden = hidden
+        self.use_duel_q = self.args.use_duel_q
 
         self.cnnLayer = CNN(env_info)
         self.DnnLayer = DNN(420 * 256, nn.Softmax(), self.action_space, self.hidden)
@@ -63,7 +64,7 @@ class visual_obs_actor(nn.Module):
 
 
 class vector_obs_actor(nn.Module):
-    def __init__(self, obs_size, action_space, learning_rate, device):
+    def __init__(self, args, obs_size, action_space, learning_rate, device):
         super(vector_obs_actor, self).__init__()
         self.learning_rate = learning_rate
         self.obs_size = obs_size

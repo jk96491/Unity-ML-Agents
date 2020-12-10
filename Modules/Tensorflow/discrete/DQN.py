@@ -7,9 +7,10 @@ import numpy as np
 
 
 class visual_obs_dqn(Model):
-    def __init__(self, action_space, learning_rate, device, env_info):
+    def __init__(self, args, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_dqn, self).__init__()
 
+        self.args = args
         self.learning_rate = learning_rate
         self.action_space = action_space
         self.device = device

@@ -7,7 +7,7 @@ import numpy as np
 
 
 class visual_obs_critic(Model):
-    def __init__(self, action_space, learning_rate, device, env_info, hidden):
+    def __init__(self, args, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_critic, self).__init__()
         self.learning_rate = learning_rate
         self.action_space = action_space

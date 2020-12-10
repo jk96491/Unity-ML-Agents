@@ -5,8 +5,9 @@ from Modules.Pytoch.DNN_Layer import DNN
 
 
 class visual_obs_critic(nn.Module):
-    def __init__(self, action_space, learning_rate, device, env_info, hidden):
+    def __init__(self, args, action_space, learning_rate, device, env_info, hidden):
         super(visual_obs_critic, self).__init__()
+        self.args = args
         self.learning_rate = learning_rate
         self.device = device
         self.env_info = env_info
@@ -15,8 +16,6 @@ class visual_obs_critic(nn.Module):
 
         self.cnnLayer = CNN(self.env_info)
         self.DnnLayer = DNN(420 * 256, None, self.action_space, self.hidden)
-
-        self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
 
         self.to(self.device)
 

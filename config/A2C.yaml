@@ -15,3 +15,5 @@ framework: 'torch'
 
 actor_hidden_layer: [512, 128]
 critic_hidden_layer: [512, 128]
+
+use_duel_q: False

@@ -37,47 +37,47 @@ def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, framework, d
     return advantage, y_k
 
 
-def get_discrete_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device, framework, env_info, hidden):
+def get_discrete_actor(args, state_dim, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden):
     if state_dim is None:
-        if framework == 'torch':
-            actor = torchActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
+        if args.framework == 'torch':
+            actor = torchActor.visual_obs_actor(args, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
         else:
-            actor = tensorflowActor.visual_obs_actor(action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
+            actor = tensorflowActor.visual_obs_actor(args, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
     else:
-        actor = torchActor.vector_obs_actor(state_dim, action_dim, ACTOR_LEARNING_RATE, device, hidden)
+        actor = torchActor.vector_obs_actor(args, state_dim, action_dim, ACTOR_LEARNING_RATE, device, hidden)
 
     return actor
 
 
-def get_discrete_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device, framework, env_info, hidden):
+def get_discrete_critic(args, state_dim, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden):
     if state_dim is None:
-        if framework == 'torch':
-            critic = torchCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
+        if args.framework == 'torch':
+            critic = torchCritic.visual_obs_critic(args, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
         else:
-            critic = tensorflowCritic.visual_obs_critic(action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
+            critic = tensorflowCritic.visual_obs_critic(args, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden)
     else:
-        critic = torchCritic.vector_obs_critic(state_dim, action_dim, ACTOR_LEARNING_RATE, device, hidden)
+        critic = torchCritic.vector_obs_critic(args, state_dim, action_dim, ACTOR_LEARNING_RATE, device, hidden)
 
     return critic
 
 
-def get_discrete_dqn(state_dim, action_dim, LEARNING_RATE, device, framework, env_info, hidden):
+def get_discrete_dqn(args, state_dim, action_dim, LEARNING_RATE, device, env_info, hidden):
     if state_dim is None:
-        if framework == 'torch':
-            dqn = torchDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device, env_info, hidden)
+        if args.framework == 'torch':
+            dqn = torchDQN.visual_obs_dqn(args, action_dim, LEARNING_RATE, device, env_info, hidden)
         else:
-            dqn = tensorflowDQN.visual_obs_dqn(action_dim, LEARNING_RATE, device, env_info, hidden)
+            dqn = tensorflowDQN.visual_obs_dqn(args, action_dim, LEARNING_RATE, device, env_info, hidden)
     else:
-        dqn = torchDQN.vector_obs_dqn(state_dim, action_dim, LEARNING_RATE, device, hidden)
+        dqn = torchDQN.vector_obs_dqn(args, state_dim, action_dim, LEARNING_RATE, device, hidden)
 
     return dqn
 
 
-def init_target_network(framework, model, env_info, hidden):
-    if framework == 'torch':
+def init_target_network(args, model, env_info, hidden):
+    if args.framework == 'torch':
         target_model = copy.deepcopy(model)
     else:
-        target_model = get_discrete_dqn(None, model.action_space, model.learning_rate, model.device, framework, env_info)
+        target_model = get_discrete_dqn(args, None, model.action_space, model.learning_rate, model.device, env_info, hidden)
         target_model.set_weights(model.get_weights())
 
     return target_model

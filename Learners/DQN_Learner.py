@@ -28,7 +28,7 @@ class dqn_agents:
         self.action_dim = self.env_info.action_masks.shape[1]
 
         self.env = env
-        self.model = Utils.get_discrete_dqn(None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework,
+        self.model = Utils.get_discrete_dqn(self.args, None, self.action_dim, self.LEARNING_RATE, self.device1, args.framework,
                                             self.env_info, self.args.hidden_layer)
 
         self.target_model = Utils.init_target_network(self.args.framework, self.model, self.env_info, self.args.hidden_layer)
