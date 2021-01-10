@@ -26,15 +26,11 @@ def advantage_td_target(reward, v_value, next_v_value, done, GAMMA, framework, d
 
     if framework == 'torch':
         reward = torch.FloatTensor(reward).to(device)
+    
+    q_val = reward + GAMMA * next_v_value * (1 - done)
+    advantage = q_val - v_value
 
-    if done:
-        y_k = v_value
-        advantage = y_k - v_value
-    else:
-        y_k = reward + GAMMA * next_v_value
-        advantage = y_k - v_value
-
-    return advantage, y_k
+    return advantage, q_val
 
 
 def get_discrete_actor(args, state_dim, action_dim, ACTOR_LEARNING_RATE, device, env_info, hidden):
