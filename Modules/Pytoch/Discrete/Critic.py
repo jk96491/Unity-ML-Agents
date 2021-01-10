@@ -39,6 +39,7 @@ class visual_obs_critic(nn.Module):
     def get_loss(self, states, td_targets):
         states = torch.FloatTensor(states).squeeze(1)
         td_target = torch.stack(td_targets, dim=0)
+
         predict = self.predict(states)
         loss = torch.mean((predict - td_target) ** 2)
 
@@ -73,7 +74,7 @@ class vector_obs_critic(nn.Module):
                                     nn.ReLU())
         self.layer3 = nn.Sequential(nn.Linear(128, 128),
                                     nn.ReLU())
-        self.layer4 = nn.Sequential(nn.Linear(128, 1))
+        self.layer4 = nn.Sequential(nn.Linear(128, action_size))
 
         self.to(self.device)
 

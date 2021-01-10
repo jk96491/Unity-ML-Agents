@@ -71,7 +71,6 @@ class vector_obs_actor(nn.Module):
         self.device = device
 
         self.fc1 = nn.Sequential(nn.Linear(obs_size, 128),
-
                                  nn.ReLU())
         self.fc2 = nn.Sequential(nn.Linear(128, 128),
                                  nn.ReLU())
