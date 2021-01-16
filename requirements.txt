@@ -1,4 +1,4 @@
 mlagents==0.10.0
 PyYAML==3.13
 torch==1.4.0
-tensorflow==2.3.0dddsd
+tensorflow==2.3.0
