@@ -18,7 +18,7 @@ class visual_obs_actor(nn.Module):
         self.use_duel_q = self.args.use_duel_q
 
         self.cnnLayer = CNN(env_info)
-        self.DnnLayer = DNN(420 * 256, nn.Softmax(), self.action_space, self.hidden)
+        self.DnnLayer = DNN(28 * 256, nn.Softmax(), self.action_space, self.hidden)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         self.to(self.device)

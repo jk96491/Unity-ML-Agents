@@ -16,7 +16,7 @@ class visual_obs_dqn(nn.Module):
         self.hidden = hidden
 
         self.cnnLayer = CNN(env_info)
-        self.DnnLayer = DNN(420 * 256, None, self.action_space, self.hidden)
+        self.DnnLayer = DNN(28 * 256, None, self.action_space, self.hidden)
 
         self.optimizer = torch.optim.Adam(self.parameters(), lr=self.learning_rate)
         self.to(self.device)
