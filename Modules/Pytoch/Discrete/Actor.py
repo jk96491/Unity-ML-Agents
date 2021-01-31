@@ -4,6 +4,7 @@ from Modules.Pytoch.CNN_Layer import CNN
 import Utils
 import numpy as np
 from Modules.Pytoch.DNN_Layer import DNN
+from torch.distributions import Categorical
 
 
 class visual_obs_actor(nn.Module):
@@ -34,8 +35,9 @@ class visual_obs_actor(nn.Module):
     def get_action(self, obs):
         obs = torch.FloatTensor(obs)
         obs = obs.to(self.device)
-        action = self.forward(obs)
-        action = np.asscalar(torch.argmax(action[0]).detach().cpu().clone().numpy())
+        action_prob = self.forward(obs)
+        m = Categorical(action_prob)
+        action = m.sample().detach().cpu().clone().numpy()
         return action
 
     def Learn(self, obs, actions, advantages):
